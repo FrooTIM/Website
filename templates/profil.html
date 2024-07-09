@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p><h1 align="center">Профиль</h1></p>
+<div class="container">
+<div class="row">
+    <p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+    {% if filename %}
+        <div>
+            <img src="{{ url_for('static', filename=filename) }}"/>
+        </div>
+    {% endif %}
+    <form method="post" action="/user_profil" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="profile_picture" class="form-control">
+            </p>
+        </dl>
+        <p>
+            <input type="submit" value="Submit" class="btn btn-info">
+        </p>
+    </form>
+</div>
+</div>
+
+
+{% endblock %}
